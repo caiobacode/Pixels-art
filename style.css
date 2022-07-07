@@ -26,6 +26,10 @@ main {
     margin-right: 48px;
 }
 
+.selected {
+    background-color: 
+}
+
 .color {
     display: inline-block;
     width: 100px;
