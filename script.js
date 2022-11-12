@@ -93,11 +93,11 @@ const createPallete = () => {
 };
 
 const createCleanBtn = () => {
-  const pixels = document.querySelectorAll('.pixel');
   const cleanBtn = document.createElement('button');
   cleanBtn.id = 'clear-board';
   cleanBtn.innerText = 'Limpar';
   cleanBtn.addEventListener('click', () => {
+    const pixels = document.querySelectorAll('.pixel');
     pixels.forEach((i) => {
       console.log(i.style.backgroundColor);
       // eslint-disable-next-line no-param-reassign
