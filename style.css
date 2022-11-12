@@ -29,7 +29,7 @@ header {
 }
 
 .selected {
-  background-color:
+  background-color: white;
 }
 
 .color {
@@ -39,6 +39,10 @@ header {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+}
+
+.input {
+  margin-left: 15px;
 }
 
 #color-1 {
@@ -53,9 +57,7 @@ header {
     background-color: brown; 
 }
 
-#color-4 {
-    background-color: blue;
-}
+
 
 #pixel-board {
     margin: 48px;
@@ -67,6 +69,15 @@ header {
     list-style-type: none;
     background-color: white;
     border: 1px solid black;  
+    color: rgb(235, 224, 255);
+}
+
+.pixel-20 {
+  height: 15px;
+  width: 15px;
+  list-style-type: none;
+  background-color: white;
+  border: 1px solid black;  
 }
 
 .margem-geral {

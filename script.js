@@ -1,74 +1,115 @@
-const cor1 = document.getElementById('color-1');
-const cor2 = document.getElementById('color-2');
-const cor3 = document.getElementById('color-3');
-const cor4 = document.getElementById('color-4');
+const options = document.getElementById('options');
+const pallete = document.getElementById('color-palette');
 let corSelected;
-const colorString = 'color  selected';
+const colorSelected = 'color  selected';
 
-cor1.addEventListener('click', () => {
-  cor1.className = colorString;
-  if (corSelected !== cor1) {
-    corSelected.className = 'color';
-  }
-  corSelected = cor1;
-});
-
-cor2.addEventListener('click', () => {
-  cor2.className = colorString;
-  if (corSelected !== cor2) {
-    corSelected.className = 'color';
-  }
-  corSelected = cor2;
-});
-
-cor3.addEventListener('click', () => {
-  cor3.className = colorString;
-  if (corSelected !== cor3) {
-    corSelected.className = 'color';
-  }
-  corSelected = cor3;
-});
-
-cor4.addEventListener('click', () => {
-  cor4.className = colorString;
-  if (corSelected !== cor4) {
-    corSelected.className = 'color';
-  }
-  corSelected = cor4;
-});
-
-const createCleanBtn = () => {
-  const section = document.getElementById('clean-div');
-  const cleanBtn = document.createElement('button');
-  const pixels = document.querySelectorAll('.pixel');
-  cleanBtn.innerText = 'Limpar';
-  cleanBtn.addEventListener('click', () => {
-    pixels.forEach((i) => {
-      // eslint-disable-next-line no-param-reassign
-      i.id = '';
-    });
-  });
-  console.log(cleanBtn);
-  section.appendChild(cleanBtn);
-};
-
-const createPixels = (n) => {
+const createPixels = (n, called) => {
   const pixelBoard = document.getElementById('pixel-board');
+  if (called) pixelBoard.innerHTML = '';
   pixelBoard.style.width = `${(n * 42) + 2}px`;
   for (let i = 0; i < (n * n); i += 1) {
     const teste = document.createElement('li');
-    teste.classList.add('pixel');
+    teste.className = ('pixel');
     // eslint-disable-next-line no-loop-func
     teste.addEventListener('click', () => {
-      teste.id = corSelected.id;
+      console.log(corSelected);
+      console.log('vimca');
+      teste.style.backgroundColor = corSelected.style.backgroundColor;
     });
     pixelBoard.appendChild(teste);
   }
 };
 
+const inputBtn = () => {
+  const input = document.querySelector('.input');
+  if (!input.value) {
+    window.alert('Board inválido!');
+    return;
+  }
+  const value = input.value > 50 ? 50 : input.value;
+  const valueNegative = value < 5 ? 5 : value;
+  createPixels(valueNegative, true);
+};
+
+const createInput = () => {
+  const newInput = document.createElement('input');
+  newInput.type = 'number';
+  newInput.min = '1';
+  newInput.id = 'board-size';
+  newInput.classList.add('input');
+  const newBtn = document.createElement('button');
+  newBtn.type = 'button';
+  newBtn.id = 'generate-board';
+  newBtn.classList.add('input-btn');
+  newBtn.innerText = 'VQV';
+  newBtn.addEventListener('click', () => {
+    inputBtn();
+  });
+  options.appendChild(newInput);
+  options.appendChild(newBtn);
+};
+
+const createRandomColor = () => {
+  const randomNumber = () => Math.floor(Math.random() * 255 + 1);
+  const color = `rgb(${randomNumber()}, ${randomNumber()}, ${randomNumber()})`;
+  const palet = document.createElement('div');
+  palet.classList.add('color');
+  palet.style.backgroundColor = color;
+  palet.addEventListener('click', () => {
+    palet.className = colorSelected;
+    if (corSelected !== palet) {
+      corSelected.className = 'color';
+    }
+    corSelected = palet;
+  });
+  return palet;
+};
+
+const createBlackColor = () => {
+  const thatColor = document.createElement('div');
+  thatColor.className = ('color  selected');
+  thatColor.style.backgroundColor = 'black';
+  corSelected = thatColor;
+  thatColor.addEventListener('click', () => {
+    thatColor.className = colorSelected;
+    if (corSelected !== thatColor) {
+      corSelected.className = 'color';
+    }
+    corSelected = thatColor;
+  });
+  return thatColor;
+};
+
+const createPallete = () => {
+  console.log(pallete);
+  const color1 = createBlackColor();
+  const color2 = createRandomColor();
+  const color3 = createRandomColor();
+  const color4 = createRandomColor();
+  pallete.appendChild(color1);
+  pallete.appendChild(color2);
+  pallete.appendChild(color3);
+  pallete.appendChild(color4);
+};
+
+const createCleanBtn = () => {
+  const pixels = document.querySelectorAll('.pixel');
+  const cleanBtn = document.createElement('button');
+  cleanBtn.id = 'clear-board';
+  cleanBtn.innerText = 'Limpar';
+  cleanBtn.addEventListener('click', () => {
+    pixels.forEach((i) => {
+      console.log(i.style.backgroundColor);
+      // eslint-disable-next-line no-param-reassign
+      i.style.backgroundColor = 'white';
+    });
+  });
+  options.appendChild(cleanBtn);
+};
+
 window.onload = () => {
-  createPixels(5);
+  createPallete();
+  createPixels(5, false);
   createCleanBtn();
-  corSelected = cor1;
-  corSelected.className = colorString;
+  createInput();
 };
