@@ -10,6 +10,6 @@ Botão limpar: Colore todos os pixels para branco(limpa).
 Input: Seleciona o tamanho do painel. Ex: 10, o painel vai ficar com 100pixels(10x10) assim que apertar o botão VQV.
 Botão VQV: Aumenta ou diminui o tamanho do painel, de acordo com o número que tiver no input.
 
-Obs: projeto tem apenas tres arquivos para nao violar as normas da Trybe.
+Obs: projeto tem apenas tres arquivos para não violar as normas da Trybe.
 
 Divirta-se!
